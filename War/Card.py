@@ -20,11 +20,11 @@ class Card(object):
                              Card.suit_names[self.suit])
 
     def __cmp__(self, other):
-        """Compares this card to other, first by suit, then rank.
+        """Compares this card to other by rank.
 
         Returns a positive number if this > other; negative if other > this;
         and 0 if they are equivalent.
         """
-        t1 = self.suit, self.rank
-        t2 = other.suit, other.rank
+        t1 = self.rank
+        t2 = other.rank
         return cmp(t1, t2)
