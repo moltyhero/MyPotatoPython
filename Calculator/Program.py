@@ -24,7 +24,7 @@ def multiply():
 
 
 # חילוק /
-def devide():
+def divide():
     x = float(input("Enter 1st Number\n"))
     y = float(input("Enter 2nd Number\n"))
     if y != 0:
@@ -32,7 +32,7 @@ def devide():
 
 
 # נוסחת שורשים
-def qEquation():
+def q_equation():
     a = int(input("Enter a\n"))
     b = int(input("Enter b\n"))
     c = int(input("Enter b\n"))
@@ -65,11 +65,11 @@ def derivative():
 # חישוב עצרת
 def factorial():
     x = int(input("Enter Number\n"))
-    sum = 1
+    total = 1
     for i in range(2, x+1, 1):
-        sum *= i
+        total *= i
 
-    return sum
+    return total
 
 
 # חישובי שטח
@@ -110,9 +110,9 @@ def main():
         elif selection == 3:
             print multiply()
         elif selection == 4:
-            print devide()
+            print divide()
         elif selection == 5:
-            print qEquation()
+            print q_equation()
         elif selection == 6:
             print derivative()
         elif selection == 7:
@@ -128,8 +128,8 @@ def main():
                               "1 Add"
                               "2 Decrease"
                               "3 Multiply"
-                              "4 Devide"
-                              "5 Squert calculation"
+                              "4 Divide"
+                              "5 quadratic equation"
                               "6 Directive"
                               "7 Factorial"
                               "8 Space"
