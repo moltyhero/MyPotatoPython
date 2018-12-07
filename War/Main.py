@@ -8,25 +8,19 @@ def war(player1_card, player2_card, player1, player2, loot):
     loot.add_card(player1_card)
     loot.add_card(player2_card)
 
-    for i in range(2):  # הוספת 2 קלפים מכל שחקן אל השלל
-        loot.add_card(player1.pop_card())
-        loot.add_card(player2.pop_card())
+    # הוספת 2 קלפים מכל שחקן אל השלל
+    for i in range(2):
+        if not player1.is_empty():
+            temp_card = player1.pop_card()
+            loot.add_card(temp_card)
+            player1_card = temp_card
 
-    return loot
+        if not player2.is_empty():
+            temp_card = player2.pop_card()
+            loot.add_card(temp_card)
+            player2_card = temp_card
 
-    # קרב חוזר
-    # player1_card = player1.pop_card()
-    # player2_card = player2.pop_card()
-    # if player1_card.__cmp__(player2_card) == 0:
-    #     war(player1_card, player2_card, player1, player2, loot)
-    # elif player1_card.__cmp__(player2_card) > 0:  # הקלף של השחקן הראשון גדול מהקלף של השחקן השני
-    #     player2.add_card(player1_card)
-    #     for i in range(4):
-    #         player2.add_card(loot.pop_card())
-    # else:  # הקלף של השחקן השני גדול מהקלף של השחקן הראשון
-    #     player1.add_card(player2_card)
-    #     for i in range(4):
-    #         player1.add_card(loot.pop_card())
+    return player1_card, player2_card, loot
 
 
 def main():
@@ -46,19 +40,22 @@ def main():
         player2_card = player2.pop_card()
 
         if player1_card.__cmp__(player2_card) == 0:  # יש מלחמה
-            loot = war(player1_card, player2_card, player1, player2, loot)
+            player1_card, player2_card, loot = war(player1_card, player2_card, player1, player2, loot)
 
         elif player1_card.__cmp__(player2_card) > 0:  # הקלף של השחקן הראשון גדול מהקלף של השחקן השני
-            player2.add_card(player1_card)
-            while not loot.is_empty():
-                player2.add_card(loot.pop_card())
-        else:  # הקלף של השחקן השני גדול מהקלף של השחקן הראשון
             player1.add_card(player2_card)
-            while not loot.is_empty():
-                player1.add_card(loot.pop_card())
+            loot.move_cards(player1, len(loot.cards))
+            player1.shuffle()
 
+        else:  # הקלף של השחקן השני גדול מהקלף של השחקן הראשון
+            player2.add_card(player1_card)
+            loot.move_cards(player2, len(loot.cards))
+            player1.shuffle()
 
-
+    if player1.is_empty():
+        print "Player 2 has won!"
+    else:
+        print "Player 1 has won!"
 
 
 if __name__ == '__main__':

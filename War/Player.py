@@ -7,9 +7,3 @@ class PlayerDeck(Deck):
     def __init__(self, label=''):
         self.cards = []
         self.label = label
-
-    def is_empty(self):
-        if self.cards == []:
-            return True
-        else:
-            return False

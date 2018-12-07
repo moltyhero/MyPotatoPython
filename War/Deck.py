@@ -45,6 +45,12 @@ class Deck(object):
         """Sorts the cards in ascending order."""
         self.cards.sort()
 
+    def is_empty(self):
+        if self.cards == []:
+            return True
+        else:
+            return False
+
     def move_cards(self, hand, num):
         """Moves the given number of cards from the deck into the Hand.
 
@@ -52,4 +58,6 @@ class Deck(object):
         num: integer number of cards to move
         """
         for i in range(num):
+            if self.cards == []:
+                break
             hand.add_card(self.pop_card())
