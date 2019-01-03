@@ -2,7 +2,23 @@
 import itertools
 
 
-def main():
+def permNum():
+    num = input("Enter number")
+    while num < 2:
+        num = input("Enter number bigger than 1")
+    permutes = list(itertools.permutations(range(1, num + 1), num))
+    sum = len(permutes)
+
+    for i in range(len(permutes)):
+        for x in range(num-1):
+            if permutes[i][x] + permutes[i][x+1] <= num:
+                sum -= 1
+                break
+
+    print sum
+    print permutes
+
+def max2():
     far2 = False
     isOK = True
     count = 0
@@ -21,6 +37,9 @@ def main():
         isOK = True
 
     print count
+
+def main():
+    permNum()
 
 
 if __name__ == '__main__':
