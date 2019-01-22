@@ -9,7 +9,7 @@ def main():
     public_key = key.publickey().export_key()  # pub key export for exchange
 
     message = b'You can attack now!'
-    cipher = PKCS1_OAEP.new(public_key)
+    cipher = PKCS1_OAEP.new(key)
     encrypted = cipher.encrypt(message)
     # message to encrypt is in the above line 'encrypt this message'
 
@@ -25,7 +25,7 @@ def main():
     message = f.read()
 
     private_key = key.export_key()
-    cipher = PKCS1_OAEP.new(private_key)
+    cipher = PKCS1_OAEP.new(key)
     decrypted = cipher.decrypt(message)
 
     print 'decrypted', decrypted
