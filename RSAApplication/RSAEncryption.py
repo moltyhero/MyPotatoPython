@@ -24,9 +24,7 @@ def encrypt_message(message):
     return encrypted
 
 
-def decrypt_message():
-    f = open('encryption.txt', 'r')
-    message = f.read()
+def decrypt_message(message):
 
     private_key = RSA.import_key(open("private.pem").read())
     new_cipher = PKCS1_OAEP.new(private_key)
