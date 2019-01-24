@@ -30,7 +30,7 @@ def main():
 
     private_key = RSA.import_key(open("private.pem").read())
     new_cipher = PKCS1_OAEP.new(private_key)
-    decrypted = new_cipher.decrypt(encrypted)
+    decrypted = new_cipher.decrypt(encrypted)  # need to insert message
 
     print 'decrypted', decrypted
 
