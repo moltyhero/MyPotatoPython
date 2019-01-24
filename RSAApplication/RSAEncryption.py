@@ -2,7 +2,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 
 
-def main():
+def generate_RSA_key():
     key = RSA.generate(2048)  # generate public and private key
 
     # The following code generates public key stored in receiver.pem and private key stored in private.pem
@@ -15,25 +15,21 @@ def main():
     file_out = open("receiver.pem", "wb")
     file_out.write(public_key)
 
-    # Encrypt the massage
-    public_key = key.publickey()
+
+def encrypt_message(message):
+    public_key = RSA.import_key(open("receiver.pem").read())
     cipher = PKCS1_OAEP.new(public_key)
-    encrypted = cipher.encrypt('encrypt this message')  # Enter here any string you want to encrypt
+    encrypted = cipher.encrypt(message)  # Enter here any string you want to encrypt
 
-    f = open('encryption.txt', 'w')
-    f.write(str(encrypted))  # write the encrypted text to file
-    f.close()
+    return encrypted
 
-    # decrypted code below
+
+def decrypt_message():
     f = open('encryption.txt', 'r')
     message = f.read()
 
     private_key = RSA.import_key(open("private.pem").read())
     new_cipher = PKCS1_OAEP.new(private_key)
-    decrypted = new_cipher.decrypt(encrypted)  # need to insert message
+    decrypted = new_cipher.decrypt(message)  # does not work
 
-    print 'decrypted', decrypted
-
-
-if __name__ == '__main__':
-    main()
+    return decrypted

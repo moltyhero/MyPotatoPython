@@ -3,22 +3,23 @@ import os
 from socket import *
 
 
-def main():
-    host = ""
-    port = 13000
-    buf = 1024
-    addr = (host, port)
-    UDPSock = socket(AF_INET, SOCK_DGRAM)
-    UDPSock.bind(addr)
-    print "Waiting to receive messages..."
-    while True:
-        (data, addr) = UDPSock.recvfrom(buf)
-        print "Received message: " + data
-        if data == "exit":
-            break
-    UDPSock.close()
-    os._exit(0)
+class Server(object):
+    def run_server(self):
+        host = "127.0.0.1"
+        port = 13000
+        buf = 1024
+        addr = (host, port)
+        UDPSock = socket(AF_INET, SOCK_DGRAM)
+        UDPSock.bind(addr)
+        print "Waiting to receive messages..."
+        while True:
+            (data, addr) = UDPSock.recvfrom(buf)
+            UDPSock.sendto(data, addr)
+            # print "Received message: " + data
+            if data == "exit":
+                break
+        exit(UDPSock)
 
-
-if __name__ == '__main__':
-    main()
+    def exit(self, UDPSock):
+        UDPSock.close()
+        os._exit(0)
