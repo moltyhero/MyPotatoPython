@@ -69,6 +69,7 @@ class Ui_MainWindow(QtGui.QMainWindow):
         self.encrypt_btn.setText(_translate("MainWindow", "Encrypt", None))
         self.decrypt_btn.setText(_translate("MainWindow", "Decrypt", None))
 
+    # RSA methods:
     def encrypt_textbox(self):
         message = self.main_text.toPlainText()
         message = str(message)

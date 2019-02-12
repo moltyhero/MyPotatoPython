@@ -18,12 +18,13 @@ def permNum():
     print sum
     print permutes
 
+
 def max2():
     far2 = False
     isOK = True
     count = 0
     num = input("Enter number")
-    test = range(1, num + 1)
+    #  test = range(1, num + 1)
     permutes = list(itertools.permutations(range(1, num+1), num))
     for i in range(len(permutes)):
         for x in range(num):
